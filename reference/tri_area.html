@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Polygon area — tri_area • area</title>
+<title>Area of triangles — tri_area • area</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Polygon area — tri_area" />
-<meta property="og:description" content="Calculate polygon area from a matrix of a closed polygon. Closed means
-that the first coordinate is the same as the last." />
+<meta property="og:title" content="Area of triangles — tri_area" />
+<meta property="og:description" content="Calculate triangle area from a matrix of coordinates. Triangles are composed
+of three coordinates, so the matrix should have this as triplets of rows
+one after the other." />
 
 
 
@@ -109,14 +110,15 @@ that the first coordinate is the same as the last." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Polygon area</h1>
+    <h1>Area of triangles</h1>
     <small class="dont-index">Source: <a href='https://github.com/hypertidy/area/blob/master/R/triangles.R'><code>R/triangles.R</code></a></small>
     <div class="hidden name"><code>tri_area.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate polygon area from a matrix of a closed polygon. Closed means
-that the first coordinate is the same as the last.</p>
+    <p>Calculate triangle area from a matrix of coordinates. Triangles are composed
+of three coordinates, so the matrix should have this as triplets of rows
+one after the other.</p>
     </div>
 
     <pre class="usage"><span class='fu'>tri_area</span>(<span class='no'>x</span>, <span class='kw'>signed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -126,19 +128,23 @@ that the first coordinate is the same as the last.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>coordinates x,y in triplets matrix where nrow(x) = ntriangles*3</p></td>
+      <td><p>coordinates x,y in triplets matrix where 'nrow(x) = ntriangles*3'</p></td>
     </tr>
     <tr>
       <th>signed</th>
-      <td><p>defaults to <code>FALSE</code> and absolute value of area is returned</p></td>
+      <td><p>defaults to <code>FALSE</code> and absolute value of area is returned,
+if <code>TRUE</code> negative means clockwise 'p-&gt;q-&gt;r' turns right and positve means
+counter-clockwise 'p-&gt;q-&gt;r' turns left</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Currently inputs are not checked whether they are closed polygons or not.</p>
-<p>If <code>signed = FALSE</code> the absolute value of area is returned, otherwise the
+    <p>If <code>signed = FALSE</code> the absolute value of area is returned, otherwise the
 sign reflects path orientation. Positive means counter-clockwise orientation.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>tri_area</span>(<span class='no'>mm_tri</span>$<span class='no'>P</span>[<span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='no'>mm_tri</span>$<span class='no'>T</span>), ])</div><div class='output co'>#&gt;  [1] 0.03000 0.06900 0.03000 0.02000 0.05000 0.10000 0.05500 0.03000 0.03000
