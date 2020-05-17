@@ -1,10 +1,12 @@
 ## lead shift by 1
 .lead <- function(x) x[2:(length(x) + 1)]
 
-#' Polygon area
+#' Area of polygon
 #'
 #' Calculate polygon area from a matrix of a closed polygon. Closed means
 #' that the first coordinate is the same as the last.
+#'
+#' Only one polygon can be input.
 #'
 #' Currently inputs are not checked whether they are closed polygons or not.
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/polygons.R
 \name{poly_area}
 \alias{poly_area}
-\title{Polygon area}
+\title{Area of polygon}
 \usage{
 poly_area(x, signed = FALSE)
 }
@@ -16,6 +16,8 @@ Calculate polygon area from a matrix of a closed polygon. Closed means
 that the first coordinate is the same as the last.
 }
 \details{
+Only one polygon can be input.
+
 Currently inputs are not checked whether they are closed polygons or not.
 
 If \code{signed = FALSE} the absolute value of area is returned, otherwise the

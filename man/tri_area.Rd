@@ -2,25 +2,29 @@
 % Please edit documentation in R/triangles.R
 \name{tri_area}
 \alias{tri_area}
-\title{Polygon area}
+\title{Area of triangles}
 \usage{
 tri_area(x, signed = FALSE)
 }
 \arguments{
-\item{x}{coordinates x,y in triplets matrix where nrow(x) = ntriangles*3}
+\item{x}{coordinates x,y in triplets matrix where 'nrow(x) = ntriangles*3'}
 
-\item{signed}{defaults to \code{FALSE} and absolute value of area is returned}
+\item{signed}{defaults to \code{FALSE} and absolute value of area is returned,
+if \code{TRUE} negative means clockwise 'p->q->r' turns right and positve means
+counter-clockwise 'p->q->r' turns left}
 }
 \description{
-Calculate polygon area from a matrix of a closed polygon. Closed means
-that the first coordinate is the same as the last.
+Calculate triangle area from a matrix of coordinates. Triangles are composed
+of three coordinates, so the matrix should have this as triplets of rows
+one after the other.
 }
 \details{
-Currently inputs are not checked whether they are closed polygons or not.
-
 If \code{signed = FALSE} the absolute value of area is returned, otherwise the
 sign reflects path orientation. Positive means counter-clockwise orientation.
 }
 \examples{
 tri_area(mm_tri$P[t(mm_tri$T), ])
+}
+\references{
+see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
 }
