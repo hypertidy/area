@@ -34,8 +34,35 @@ The area package is written to allow easy to use calculations for
 developing packages. It’s similar to the
 [traipse](https://CRAN.r-project.org/) package which was created to
 leverage the grouping mechanisms of the tidyverse for common tracking
-data calculations. (In time we will have calculation idioms that are
-seriously fast to run as well as they are easy to write.)
+data calculations.
+
+``` r
+library(area)
+poly_area(cbind(c(0, 1, 1, 0, 0), 
+                c(0, 0, 1, 1, 0)))
+#> [1] 1
+
+tri_area(cbind(c(0, 1, 1, 1, 0, 0), 
+               c(0, 0, 1, 1, 1, 0)))
+#> [1] 0.5 0.5
+```
+
+There’s an inbuilt data set with a path of Tasmania’s outline.
+
+``` r
+index <- 4423 ## explain later
+idx <- c(tas$S[1], tas$S[1:index,2], 1)
+plot(tas$P[idx, ], type = "l", asp = 1)
+```
+
+<img src="man/figures/README-tas-1.png" width="100%" />
+
+``` r
+poly_area(tas$P[idx, ])/1e6
+#> [1] 61672.74
+sf::st_area(sf::st_polygon(list(tas$P[idx, ])))/1e6
+#> [1] 61672.74
+```
 
 ``` r
 library(dplyr)
@@ -74,8 +101,10 @@ sum(sf::st_area(sf::st_set_crs(silicate::inlandwaters, NA)))
 Well - ha ha - we will need some ease of use here, and some speed ups -
 but we aren’t restricted to one in-memory format, we have the area of
 every component part to use as we wish (the grouping tells us about
-holes and multipolygons), and when we have the right tools we’ll only be
-using R and C++. Oh and triangles composed of 3 points not 4.
+holes and multipolygons), we can tell the orientation of the polygon or
+triangle and get its area, and when we have the right tools we’ll only
+be using R and C++. Oh and we can calculate with triangles stored
+compactly.
 
 ``` r
 (a <- tri_area(mm_tri$P[t(mm_tri$T), ]))
