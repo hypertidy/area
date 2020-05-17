@@ -17,7 +17,7 @@
 #' @export
 #' @references see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
 #' @examples
-#' tri_area(mm_tri$P[t(mm_tri$T), ])
+#' sum(tri_area(mm_tri$P[t(mm_tri$T), ]))
 tri_area <- function(x, signed = FALSE) {
   ## offset index for shoelace formula
   reps <- rep(seq(0L, nrow(x) - 1L, by = 3L), each = 3L)

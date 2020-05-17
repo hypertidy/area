@@ -36,7 +36,7 @@ if (any(hole)) {
 plot(tasf)
 abline(h = tas_cent[,2], v = tas_cent[,1])
 
-mm_cent <- matrix(rapply(minimal$geom, colMeans, classes = "matrix"), ncol = 2, byrow = TRUE)
+mm_cent <- matrix(rapply(minimal_mesh$geom, colMeans, classes = "matrix"), ncol = 2, byrow = TRUE)
 
 pslg0 <- function() {
   #RTriangle::pslg(cbind(0, 0))
