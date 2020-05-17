@@ -10,6 +10,14 @@ Calculate the area of triangles and polygons using the shoestring
  formula. Area may be signed, taking into account path orientation, or unsigned, 
  ignoring path orientation.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/hypertidy/area}
+  \item Report bugs at \url{https://github.com/hypertidy/area/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Michael Sumner \email{mdsumner@gmail.com} (\href{https://orcid.org/0000-0002-2471-7511}{ORCID})
 
