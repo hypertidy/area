@@ -5,12 +5,16 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
 status](https://github.com/hypertidy/area/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/area/actions)
 <!-- badges: end -->
 
 The goal of area is to calculate areas, allow control over how that
 happens, and illustrate how it works.
+
+Very much work in progress.
 
 Please, do not use this for your land surveying contract.
 
