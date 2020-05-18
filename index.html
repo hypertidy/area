@@ -12,9 +12,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Calculate Area of Triangles and Polygons">
-<meta property="og:description" content="Calculate the area of triangles and polygons using the shoestring 
+<meta property="og:description" content="Calculate the area of triangles and polygons using the shoelace 
  formula. Area may be signed, taking into account path orientation, or unsigned, 
- ignoring path orientation. ">
+ ignoring path orientation. The shoelace formula is described at 
+ &lt;https://en.wikipedia.org/wiki/Shoelace_formula&gt; and its cross-product basis at
+ &lt;http://www.cs.tufts.edu/comp/163/OrientationTests.pdf&gt;. ">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -33,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">area</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9002</span>
       </span>
     </div>
 
@@ -47,6 +49,9 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -74,7 +79,7 @@
 <!-- badges: start -->
 
 <p>The goal of area is to calculate areas, allow control over how that happens, and illustrate how it works.</p>
-<p>Very much work in progress.</p>
+<p>Very much work in progress. VERY BUGGY RIGHT NOW</p>
 <p>Please, do not use this for your land surveying contract.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -83,70 +88,9 @@
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"hypertidy/area"</span>)</pre></div>
 </div>
-<div id="straightforward-tools" class="section level2">
+<div id="motivation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#straightforward-tools" class="anchor"></a>Straightforward tools</h2>
-<p>The area package is written to allow easy to use calculations for developing packages. It’s similar to the <a href="https://CRAN.r-project.org/">traipse</a> package which was created to leverage the grouping mechanisms of the tidyverse for common tracking data calculations.</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">area</span>)
-<span class="fu"><a href="reference/poly_area.html">poly_area</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>),
-                <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>)))
-<span class="co">#&gt; [1] 1</span>
-
-<span class="fu"><a href="reference/tri_area.html">tri_area</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>),
-               <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>)))
-<span class="co">#&gt; [1] 0.5 0.5</span></pre></div>
-<p>There’s an inbuilt data set with a path of Tasmania’s outline.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">index</span> <span class="kw">&lt;-</span> <span class="fl">4423</span> <span class="co">## explain later</span>
-<span class="no">idx</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">tas</span>$<span class="no">S</span>[<span class="fl">1</span>], <span class="no">tas</span>$<span class="no">S</span>[<span class="fl">1</span>:<span class="no">index</span>,<span class="fl">2</span>], <span class="fl">1</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">tas</span>$<span class="no">P</span>[<span class="no">idx</span>, ], <span class="kw">type</span> <span class="kw">=</span> <span class="st">"l"</span>, <span class="kw">asp</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></div>
-<p><img src="reference/figures/README-tas-1.png" width="100%"></p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="reference/poly_area.html">poly_area</a></span>(<span class="no">tas</span>$<span class="no">P</span>[<span class="no">idx</span>, ])/<span class="fl">1e6</span>
-<span class="co">#&gt; [1] 61672.74</span>
-<span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu">st_area</span>(<span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu">st_polygon</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">tas</span>$<span class="no">P</span>[<span class="no">idx</span>, ])))/<span class="fl">1e6</span>
-<span class="co">#&gt; [1] 61672.74</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">area</span>)
-
-<span class="no">calc_area</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">df</span>) {
- <span class="no">area</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span>
-  <span class="fu">group_by</span>(<span class="no">multipolygon_id</span>, <span class="no">polygon_id</span>, <span class="no">linestring_id</span>) <span class="kw">%&gt;%</span>
-  <span class="fu">summarize</span>(<span class="kw">area</span> <span class="kw">=</span> <span class="fu"><a href="reference/poly_area.html">poly_area</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">x</span>, <span class="no">y</span>))) <span class="kw">%&gt;%</span>
-  <span class="fu">ungroup</span>() <span class="co">#%&gt;% </span>
-  <span class="no">area</span> <span class="kw">%&gt;%</span>  <span class="fu">mutate</span>(<span class="kw">area</span> <span class="kw">=</span> <span class="no">area</span>,
-                   <span class="kw">hole</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1</span>, <span class="fl">1</span>)[(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="no">multipolygon_id</span>)), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="no">polygon_id</span>))) <span class="kw">==</span> <span class="fl">1</span>) + <span class="fl">1</span>])
-}
-
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">sfheaders</span><span class="kw ns">::</span><span class="fu">sf_to_df</span>(<span class="no">minimal_mesh</span>)
-(<span class="no">mmarea</span> <span class="kw">&lt;-</span> <span class="fu">calc_area</span>(<span class="no">df</span>))
-<span class="co">#&gt; # A tibble: 3 x 5</span>
-<span class="co">#&gt;   multipolygon_id polygon_id linestring_id  area  hole</span>
-<span class="co">#&gt;             &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1               1          1             1 0.762     1</span>
-<span class="co">#&gt; 2               1          1             2 0.09     -1</span>
-<span class="co">#&gt; 3               2          1             1 0.197     1</span>
-<span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu">st_area</span>(<span class="no">minimal_mesh</span>)
-<span class="co">#&gt; [1] 0.67200 0.19695</span>
-
-
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">sfheaders</span><span class="kw ns">::</span><span class="fu">sf_to_df</span>(<span class="kw pkg">silicate</span><span class="kw ns">::</span><span class="no">inlandwaters</span>)
-<span class="fu">calc_area</span>(<span class="no">df</span>) <span class="kw">%&gt;%</span> <span class="fu">summarize</span>(<span class="kw">area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">area</span> * <span class="no">hole</span>)) <span class="kw">%&gt;%</span> <span class="fu">pull</span>(<span class="no">area</span>)
-<span class="co">#&gt; [1] 1.923706e+12</span>
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu">st_area</span>(<span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu">st_set_crs</span>(<span class="kw pkg">silicate</span><span class="kw ns">::</span><span class="no">inlandwaters</span>, <span class="fl">NA</span>)))
-<span class="co">#&gt; [1] 1.923706e+12</span></pre></div>
-</div>
-<div id="straightforward" class="section level2">
-<h2 class="hasAnchor">
-<a href="#straightforward" class="anchor"></a>Straightforward?</h2>
-<p>Well - ha ha - we will need some ease of use here, and some speed ups - but we aren’t restricted to one in-memory format, we have the area of every component part to use as we wish (the grouping tells us about holes and multipolygons), we can tell the orientation of the polygon or triangle and get its area, and when we have the right tools we’ll only be using R and C++. Oh and we can calculate with triangles stored compactly.</p>
-<div class="sourceCode" id="cb6"><pre class="r">(<span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/tri_area.html">tri_area</a></span>(<span class="no">mm_tri</span>$<span class="no">P</span>[<span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">mm_tri</span>$<span class="no">T</span>), ]))
-<span class="co">#&gt;  [1] 0.03000 0.06900 0.03000 0.02000 0.05000 0.10000 0.05500 0.03000 0.03000</span>
-<span class="co">#&gt; [10] 0.03000 0.03000 0.14550 0.05145 0.04500 0.11250 0.06250 0.06800</span>
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">a</span>)
-<span class="co">#&gt; [1] 0.95895</span>
-
-<span class="co">## so we don't double count the hole</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">mmarea</span>$<span class="no">area</span>[<span class="no">mmarea</span>$<span class="no">hole</span> <span class="kw">&gt;</span> <span class="fl">0</span>]))
-<span class="co">#&gt; [1] 0.95895</span></pre></div>
+<a href="#motivation" class="anchor"></a>Motivation</h2>
 <p>The key motivation here is <em>flexibility</em>.</p>
 <hr>
 </div>

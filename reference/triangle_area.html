@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>area: Calculate Area of Triangles and Polygons — area-package • area</title>
+<title>Area of triangles — triangle_area • area</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,10 @@
 
 
 
-<meta property="og:title" content="area: Calculate Area of Triangles and Polygons — area-package" />
-<meta property="og:description" content="Calculate the area of triangles and polygons using the shoelace 
- formula. Area may be signed, taking into account path orientation, or unsigned, 
- ignoring path orientation. The shoelace formula is described at 
- &amp;lt;https://en.wikipedia.org/wiki/Shoelace_formula&amp;gt; and its cross-product basis at
- &amp;lt;http://www.cs.tufts.edu/comp/163/OrientationTests.pdf&amp;gt;." />
+<meta property="og:title" content="Area of triangles — triangle_area" />
+<meta property="og:description" content="Calculate triangle area from a matrix of coordinates. Triangles are composed
+of three coordinates, so the matrix should have this as triplets of rows
+one after the other." />
 
 
 
@@ -115,30 +113,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>area: Calculate Area of Triangles and Polygons</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hypertidy/area/blob/master/R/area-package.R'><code>R/area-package.R</code></a></small>
-    <div class="hidden name"><code>area-package.Rd</code></div>
+    <h1>Area of triangles</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hypertidy/area/blob/master/R/triangles.R'><code>R/triangles.R</code></a></small>
+    <div class="hidden name"><code>triangle_area.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate the area of triangles and polygons using the shoelace 
- formula. Area may be signed, taking into account path orientation, or unsigned, 
- ignoring path orientation. The shoelace formula is described at 
- &lt;https://en.wikipedia.org/wiki/Shoelace_formula&gt; and its cross-product basis at
- &lt;http://www.cs.tufts.edu/comp/163/OrientationTests.pdf&gt;.</p>
+    <p>Calculate triangle area from a matrix of coordinates. Triangles are composed
+of three coordinates, so the matrix should have this as triplets of rows
+one after the other.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>triangle_area</span>(<span class='no'>x</span>, <span class='kw'>signed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>coordinates x,y triplets matrix where 'nrow(x) = ntriangles*3'</p></td>
+    </tr>
+    <tr>
+      <th>signed</th>
+      <td><p>defaults to <code>FALSE</code> and absolute value of area is returned,
+if <code>TRUE</code> negative means clockwise 'p-&gt;q-&gt;r' turns right and positive means
+counter-clockwise 'p-&gt;q-&gt;r' turns left</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://github.com/hypertidy/area'>https://github.com/hypertidy/area</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/hypertidy/area/issues'>https://github.com/hypertidy/area/issues</a></p></li>
-</ul>
+    <p>If <code>signed = FALSE</code> the absolute value of area is returned, otherwise the
+sign reflects path orientation. Positive means counter-clockwise orientation.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-</div>
+    <p>see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'>triangle_area</span>(<span class='no'>mm_tri</span>$<span class='no'>P</span>[<span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='no'>mm_tri</span>$<span class='no'>T</span>), ]))</div><div class='output co'>#&gt; [1] 0.95895</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
