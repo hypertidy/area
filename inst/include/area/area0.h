@@ -15,11 +15,11 @@ using namespace Rcpp;
 // https://rosettacode.org/wiki/Shoelace_formula_for_polygonal_area
 NumericVector area_x_y(NumericVector x, NumericVector y) {
 
-  int len = (int)x.length();
+  int len = (int)x.size();
   double left = 0;
   double right = 0;
 
-  for(int i = 0; i < len; i++){
+  for(int i = 0; i < (len-1); i++){
     left  += x[i] * y[i+1];
     right += x[i+1] * y[i];
   }
