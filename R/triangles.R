@@ -10,15 +10,15 @@
 #' If `signed = FALSE` the absolute value of area is returned, otherwise the
 #' sign reflects path orientation. Positive means counter-clockwise orientation.
 #'
-#' @param x coordinates x,y in triplets matrix where 'nrow(x) = ntriangles*3'
+#' @param x coordinates x,y triplets matrix where 'nrow(x) = ntriangles*3'
 #' @param signed  defaults to `FALSE` and absolute value of area is returned,
-#' if `TRUE` negative means clockwise 'p->q->r' turns right and positve means
+#' if `TRUE` negative means clockwise 'p->q->r' turns right and positive means
 #' counter-clockwise 'p->q->r' turns left
 #' @export
 #' @references see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
 #' @examples
-#' sum(tri_area(mm_tri$P[t(mm_tri$T), ]))
-tri_area <- function(x, signed = FALSE) {
+#' sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
+triangle_area <- function(x, signed = FALSE) {
   ## offset index for shoelace formula
   reps <- rep(seq(0L, nrow(x) - 1L, by = 3L), each = 3L)
   ix <- c(2L, 3L, 1L) + reps
@@ -31,4 +31,9 @@ tri_area <- function(x, signed = FALSE) {
     area <- abs(area)
   }
   area
+}
+
+tri_area <- function(...) {
+  .Deprecated("triangle_area")
+  triangle_area(...)
 }
