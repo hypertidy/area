@@ -32,6 +32,16 @@ devtools::install_github("hypertidy/area")
 
 The key motivation here is *flexibility*.
 
+Performance is compelling, compare `silicate::tri_area()` to this C++ version
+
+```
+ dim(trxy)
+[1] 99615     2
+rbenchmark::benchmark(tri_area(trxy), triangle_area(trxy))
+                 test replications elapsed relative user.self sys.self user.child
+1      tri_area(trxy)          100   1.452    5.902     1.420    0.032          0
+2 triangle_area(trxy)          100   0.246    1.000     0.223    0.024          0
+```
 -----
 
 ## Code of Conduct
