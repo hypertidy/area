@@ -52,10 +52,10 @@ developing packages. It's similar to the [traipse](https://CRAN.r-project.org/) 
 
 ```{r areas}
 library(area)
-poly_area(cbind(c(0, 1, 1, 0, 0), 
+polygon_area(cbind(c(0, 1, 1, 0, 0), 
                 c(0, 0, 1, 1, 0)))
 
-tri_area(cbind(c(0, 1, 1, 1, 0, 0), 
+triangle_area(cbind(c(0, 1, 1, 1, 0, 0), 
                c(0, 0, 1, 1, 1, 0)))
 
 ```
@@ -66,7 +66,7 @@ There's an inbuilt data set with a path of Tasmania's outline.
 index <- 4423 ## explain later
 idx <- c(tas$S[1], tas$S[1:index,2], 1)
 plot(tas$P[idx, ], type = "l", asp = 1)
-poly_area(tas$P[idx, ])/1e6
+polygon_area(tas$P[idx, ])/1e6
 sf::st_area(sf::st_polygon(list(tas$P[idx, ])))/1e6
 ```
 
@@ -78,7 +78,7 @@ library(area)
 calc_area <- function(df) {
  area <- df %>% 
   group_by(multipolygon_id, polygon_id, linestring_id) %>% 
-  summarize(area = poly_area(cbind(x, y))) %>% 
+  summarize(area = polygon_area(cbind(x, y))) %>% 
   ungroup() #%>% 
   area %>%  mutate(area = area, 
                    hole = c(-1, 1)[(pmax(c(1, diff(multipolygon_id)), c(1, diff(polygon_id))) == 1) + 1])
@@ -101,7 +101,7 @@ Well - ha ha - we will need some ease of use here, and some speed ups - but we a
 
 
 ```{r triangles}
-(a <- tri_area(mm_tri$P[t(mm_tri$T), ]))
+(a <- triangle_area(mm_tri$P[t(mm_tri$T), ]))
 sum(a)
 
 ## so we don't double count the hole

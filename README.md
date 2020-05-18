@@ -38,11 +38,11 @@ data calculations.
 
 ``` r
 library(area)
-poly_area(cbind(c(0, 1, 1, 0, 0), 
+polygon_area(cbind(c(0, 1, 1, 0, 0), 
                 c(0, 0, 1, 1, 0)))
 #> [1] 1
 
-tri_area(cbind(c(0, 1, 1, 1, 0, 0), 
+triangle_area(cbind(c(0, 1, 1, 1, 0, 0), 
                c(0, 0, 1, 1, 1, 0)))
 #> [1] 0.5 0.5
 ```
@@ -58,7 +58,7 @@ plot(tas$P[idx, ], type = "l", asp = 1)
 <img src="man/figures/README-tas-1.png" width="100%" />
 
 ``` r
-poly_area(tas$P[idx, ])/1e6
+polygon_area(tas$P[idx, ])/1e6
 #> [1] 61672.74
 sf::st_area(sf::st_polygon(list(tas$P[idx, ])))/1e6
 #> [1] 61672.74
@@ -71,7 +71,7 @@ library(area)
 calc_area <- function(df) {
  area <- df %>% 
   group_by(multipolygon_id, polygon_id, linestring_id) %>% 
-  summarize(area = poly_area(cbind(x, y))) %>% 
+  summarize(area = polygon_area(cbind(x, y))) %>% 
   ungroup() #%>% 
   area %>%  mutate(area = area, 
                    hole = c(-1, 1)[(pmax(c(1, diff(multipolygon_id)), c(1, diff(polygon_id))) == 1) + 1])
@@ -91,7 +91,7 @@ sf::st_area(minimal_mesh)
 
 df <- sfheaders::sf_to_df(silicate::inlandwaters)
 calc_area(df) %>% summarize(area = sum(area * hole)) %>% pull(area)
-#> [1] 1.923706e+12
+#> [1] Inf
 sum(sf::st_area(sf::st_set_crs(silicate::inlandwaters, NA)))
 #> [1] 1.923706e+12
 ```
@@ -107,7 +107,7 @@ be using R and C++. Oh and we can calculate with triangles stored
 compactly.
 
 ``` r
-(a <- tri_area(mm_tri$P[t(mm_tri$T), ]))
+(a <- triangle_area(mm_tri$P[t(mm_tri$T), ]))
 #>  [1] 0.03000 0.06900 0.03000 0.02000 0.05000 0.10000 0.05500 0.03000 0.03000
 #> [10] 0.03000 0.03000 0.14550 0.05145 0.04500 0.11250 0.06250 0.06800
 sum(a)
