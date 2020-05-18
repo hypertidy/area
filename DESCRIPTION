@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "mdsumner@gmail.com",
            comment = c(ORCID = "0000-0002-2471-7511"))
-Description: Calculate the area of triangles and polygons using the shoeslace 
+Description: Calculate the area of triangles and polygons using the shoelace 
  formula. Area may be signed, taking into account path orientation, or unsigned, 
  ignoring path orientation. The shoelace formula is described at 
  <https://en.wikipedia.org/wiki/Shoelace_formula> and its cross-product basis at
