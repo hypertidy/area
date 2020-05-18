@@ -1,5 +1,7 @@
 # area dev
 
+* Added C++ versions of triangle and polygon area. 
+
 * Begin conversion to C++ headers capability. 
 
 # area 0.0.1

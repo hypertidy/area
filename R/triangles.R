@@ -19,6 +19,17 @@
 #' @examples
 #' sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
 triangle_area <- function(x, signed = FALSE) {
+  area <- area_triangle_cpp(x[,1L, drop = TRUE],
+                    x[,2L, drop = TRUE])
+  if (!signed) {
+    area <- abs(area)
+  }
+  area
+}
+
+
+
+triangle_area_r <- function(x, signed = FALSE) {
   ## offset index for shoelace formula
   reps <- rep(seq(0L, nrow(x) - 1L, by = 3L), each = 3L)
   ix <- c(2L, 3L, 1L) + reps

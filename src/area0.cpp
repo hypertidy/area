@@ -10,6 +10,12 @@ Rcpp::NumericVector area_cpp(NumericVector x, NumericVector y) {
 
 }
 
+// [[Rcpp::export]]
+Rcpp::NumericVector area_triangle_cpp(NumericVector x, NumericVector y) {
+  return area0::area_triangle(x, y);
+
+}
+
 // just a hull so I can test randomly
 // [[Rcpp::export]]
 Rcpp::NumericVector area_dummy(double x1i, double x2i) {

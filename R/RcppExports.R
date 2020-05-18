@@ -5,6 +5,10 @@ area_cpp <- function(x, y) {
     .Call(`_area_area_cpp`, x, y)
 }
 
+area_triangle_cpp <- function(x, y) {
+    .Call(`_area_area_triangle_cpp`, x, y)
+}
+
 area_dummy <- function(x1i, x2i) {
     .Call(`_area_area_dummy`, x1i, x2i)
 }

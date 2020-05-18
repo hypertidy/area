@@ -17,6 +17,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// area_triangle_cpp
+Rcpp::NumericVector area_triangle_cpp(NumericVector x, NumericVector y);
+RcppExport SEXP _area_area_triangle_cpp(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(area_triangle_cpp(x, y));
+    return rcpp_result_gen;
+END_RCPP
+}
 // area_dummy
 Rcpp::NumericVector area_dummy(double x1i, double x2i);
 RcppExport SEXP _area_area_dummy(SEXP x1iSEXP, SEXP x2iSEXP) {
@@ -32,6 +44,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_area_area_cpp", (DL_FUNC) &_area_area_cpp, 2},
+    {"_area_area_triangle_cpp", (DL_FUNC) &_area_area_triangle_cpp, 2},
     {"_area_area_dummy", (DL_FUNC) &_area_area_dummy, 2},
     {NULL, NULL, 0}
 };
