@@ -92,6 +92,13 @@
 <h2 class="hasAnchor">
 <a href="#motivation" class="anchor"></a>Motivation</h2>
 <p>The key motivation here is <em>flexibility</em>.</p>
+<p>Performance is compelling, compare <code>silicate::tri_area()</code> to this C++ version</p>
+<pre><code> dim(trxy)
+[1] 99615     2
+rbenchmark::benchmark(tri_area(trxy), triangle_area(trxy))
+                 test replications elapsed relative user.self sys.self user.child
+1      tri_area(trxy)          100   1.452    5.902     1.420    0.032          0
+2 triangle_area(trxy)          100   0.246    1.000     0.223    0.024          0</code></pre>
 <hr>
 </div>
 <div id="code-of-conduct" class="section level2">
