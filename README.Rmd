@@ -76,8 +76,9 @@ library(dplyr)
 library(area)
 
 calc_area <- function(df) {
- area <- df %>% 
+ area <- df %>% mutate(row = row_number()) %>% 
   group_by(multipolygon_id, polygon_id, linestring_id) %>% 
+   arrange(row) %>% 
   summarize(area = polygon_area(cbind(x, y))) %>% 
   ungroup() #%>% 
   area %>%  mutate(area = area, 
@@ -89,9 +90,7 @@ df <- sfheaders::sf_to_df(minimal_mesh)
 sf::st_area(minimal_mesh)
 
 
-df <- sfheaders::sf_to_df(silicate::inlandwaters)
-calc_area(df) %>% summarize(area = sum(area * hole)) %>% pull(area)
-sum(sf::st_area(sf::st_set_crs(silicate::inlandwaters, NA)))
+
 
 ```
 
