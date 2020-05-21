@@ -3,13 +3,11 @@
 
 #include <Rcpp.h>
 
-namespace area0 {
+namespace area {
 
 using namespace Rcpp;
 
- void donothing(double a) {
 
- }
  // polygon area, x,y coords assumed first == last
  // -------------------------------------------------
  // http://www.cs.tufts.edu/comp/163/OrientationTests.pdf

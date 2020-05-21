@@ -29,23 +29,10 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// area_dummy
-Rcpp::NumericVector area_dummy(double x1i, double x2i);
-RcppExport SEXP _area_area_dummy(SEXP x1iSEXP, SEXP x2iSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type x1i(x1iSEXP);
-    Rcpp::traits::input_parameter< double >::type x2i(x2iSEXP);
-    rcpp_result_gen = Rcpp::wrap(area_dummy(x1i, x2i));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_area_area_cpp", (DL_FUNC) &_area_area_cpp, 2},
     {"_area_area_triangle_cpp", (DL_FUNC) &_area_area_triangle_cpp, 2},
-    {"_area_area_dummy", (DL_FUNC) &_area_area_dummy, 2},
     {NULL, NULL, 0}
 };
 
