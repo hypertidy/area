@@ -118,9 +118,7 @@ compactly.
 sum(a)
 #> [1] 0.95895
 
-## so we don't double count the hole
-print(sum(mmarea$area[mmarea$hole > 0]))
-#> [1] 1.952986e+12
+## that is the area of the silicate::minimal_mesh (but the hole is included)
 ```
 
 The key motivation here is *flexibility* and working with triangles.
@@ -144,8 +142,8 @@ dim(trxy)
 #> [1] 18291     2
 rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
 #>   test replications elapsed relative user.self sys.self user.child sys.child
-#> 2  cpp          100   0.064    1.000     0.036    0.028          0         0
-#> 1    R          100   0.292    4.562     0.259    0.032          0         0
+#> 2  cpp          100   0.059    1.000     0.047    0.012          0         0
+#> 1    R          100   0.279    4.729     0.246    0.031          0         0
 sum(abs(a - b))
 #> [1] 0.0004653583
 mean(c(sum(a), sum(b)))

@@ -107,8 +107,8 @@ Well - ha ha - we will need some ease of use here, and some speed ups - but we a
 (a <- triangle_area(mm_tri$P[t(mm_tri$T), ]))
 sum(a)
 
-## so we don't double count the hole
-print(sum(mmarea$area[mmarea$hole > 0]))
+## that is the area of the silicate::minimal_mesh (but the hole is included)
+
 ```
 
 The key motivation here is *flexibility* and working with triangles. 
