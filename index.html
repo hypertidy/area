@@ -154,9 +154,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">a</span>)
 <span class="co">#&gt; [1] 0.95895</span>
 
-<span class="co">## so we don't double count the hole</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">mmarea</span>$<span class="no">area</span>[<span class="no">mmarea</span>$<span class="no">hole</span> <span class="kw">&gt;</span> <span class="fl">0</span>]))
-<span class="co">#&gt; [1] 1.952986e+12</span></pre></div>
+<span class="co">## that is the area of the silicate::minimal_mesh (but the hole is included)</span></pre></div>
 <p>The key motivation here is <em>flexibility</em> and working with triangles.</p>
 <p>Performance is compelling, compare silicate::tri_area() to this C++ version</p>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">silicate</span>)
@@ -174,8 +172,8 @@
 <span class="co">#&gt; [1] 18291     2</span>
 <span class="kw pkg">rbenchmark</span><span class="kw ns">::</span><span class="fu">benchmark</span>(<span class="kw">R</span> <span class="kw">=</span> {<span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu">tri_area</span>(<span class="no">trxy</span>)}, <span class="kw">cpp</span> <span class="kw">=</span> {<span class="no">b</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/triangle_area.html">triangle_area</a></span>(<span class="no">trxy</span>)})
 <span class="co">#&gt;   test replications elapsed relative user.self sys.self user.child sys.child</span>
-<span class="co">#&gt; 2  cpp          100   0.064    1.000     0.036    0.028          0         0</span>
-<span class="co">#&gt; 1    R          100   0.292    4.562     0.259    0.032          0         0</span>
+<span class="co">#&gt; 2  cpp          100   0.059    1.000     0.047    0.012          0         0</span>
+<span class="co">#&gt; 1    R          100   0.279    4.729     0.246    0.031          0         0</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">a</span> - <span class="no">b</span>))
 <span class="co">#&gt; [1] 0.0004653583</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">a</span>), <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">b</span>)))
