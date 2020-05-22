@@ -23,7 +23,7 @@ Currently inputs are not checked but are assumed to have the last coordinate
 as a copy of the first aka 'closed'.
 
 If \code{signed = FALSE} the absolute value of area is returned, otherwise the
-sign reflects path orientation. Positive means clockwise orientation.
+sign reflects path orientation. Positive means counter-clockwise orientation.
 }
 \examples{
 x <- c(2, 10, 8, 11, 7, 2)

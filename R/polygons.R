@@ -11,7 +11,7 @@
 #' as a copy of the first aka 'closed'.
 #'
 #' If `signed = FALSE` the absolute value of area is returned, otherwise the
-#' sign reflects path orientation. Positive means clockwise orientation.
+#' sign reflects path orientation. Positive means counter-clockwise orientation.
 #' @param x polygon in xy matrix
 #' @param signed  defaults to `FALSE` and absolute value of area is returned
 #' @examples
