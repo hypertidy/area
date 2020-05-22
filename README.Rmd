@@ -67,6 +67,7 @@ index <- 4423 ## explain later
 idx <- c(tas$S[1], tas$S[1:index,2], 1)
 plot(tas$P[idx, ], type = "l", asp = 1)
 polygon_area(tas$P[idx, ])/1e6
+
 sf::st_area(sf::st_polygon(list(tas$P[idx, ])))/1e6
 ```
 
@@ -84,10 +85,13 @@ calc_area <- function(df) {
   area %>%  mutate(area = area, 
                    hole = c(-1, 1)[(pmax(c(1, diff(multipolygon_id)), c(1, diff(polygon_id))) == 1) + 1])
 }
-
-df <- sfheaders::sf_to_df(minimal_mesh)
+xsf <- silicate::inlandwaters
+df <- sfheaders::sf_to_df(xsf)
 (mmarea <- calc_area(df))
-sf::st_area(minimal_mesh)
+sum(mmarea$area * mmarea$hole)
+sum(sf::st_area(xsf))
+
+
 
 
 
@@ -107,7 +111,19 @@ sum(a)
 print(sum(mmarea$area[mmarea$hole > 0]))
 ```
 
-The key motivation here is *flexibility*. 
+The key motivation here is *flexibility* and working with triangles. 
+
+Performance is compelling, compare silicate::tri_area() to this C++ version
+
+```{r tri-perf}
+library(silicate)
+tas_tri <- RTriangle::triangulate(tas)
+trxy <- tas_tri$P[t(tas_tri$T), ]
+dim(trxy)
+rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
+sum(abs(a - b))
+mean(c(sum(a), sum(b)))
+```
 
 ---
 
