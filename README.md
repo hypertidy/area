@@ -9,6 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
 status](https://github.com/hypertidy/area/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/area/actions)
+[![R-CMD-check](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of area is to calculate areas, allow control over how that
@@ -81,7 +82,9 @@ calc_area <- function(df) {
 xsf <- silicate::inlandwaters
 df <- sfheaders::sf_to_df(xsf)
 (mmarea <- calc_area(df))
-#> # A tibble: 189 x 5
+#> `summarise()` has grouped output by 'multipolygon_id', 'polygon_id'. You can
+#> override using the `.groups` argument.
+#> # A tibble: 189 × 5
 #>    multipolygon_id polygon_id linestring_id          area  hole
 #>              <dbl>      <dbl>         <dbl>         <dbl> <dbl>
 #>  1               1          1             1   2203380098.     1
@@ -98,6 +101,9 @@ df <- sfheaders::sf_to_df(xsf)
 sum(mmarea$area * mmarea$hole)
 #> [1] 1.923706e+12
 sum(sf::st_area(xsf))
+#> old-style crs object detected; please recreate object with a recent sf::st_crs()
+#> old-style crs object detected; please recreate object with a recent sf::st_crs()
+#> old-style crs object detected; please recreate object with a recent sf::st_crs()
 #> 1.923706e+12 [m^2]
 ```
 
@@ -123,16 +129,13 @@ sum(a)
 
 The key motivation here is *flexibility* and working with triangles.
 
-Performance is compelling, compare silicate::tri\_area() to this C++
+Performance is compelling, compare silicate::tri_area() to this C++
 version
 
 ``` r
 library(silicate)
 #> 
 #> Attaching package: 'silicate'
-#> The following objects are masked _by_ '.GlobalEnv':
-#> 
-#>     inlandwaters, minimal_mesh
 #> The following object is masked from 'package:stats':
 #> 
 #>     filter
@@ -142,15 +145,15 @@ dim(trxy)
 #> [1] 18291     2
 rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
 #>   test replications elapsed relative user.self sys.self user.child sys.child
-#> 2  cpp          100   0.059    1.000     0.047    0.012          0         0
-#> 1    R          100   0.279    4.729     0.246    0.031          0         0
+#> 2  cpp          100   0.051    1.000     0.036    0.016          0         0
+#> 1    R          100   0.251    4.922     0.218    0.032          0         0
 sum(abs(a - b))
 #> [1] 0.0004653583
 mean(c(sum(a), sum(b)))
 #> [1] 61672735794
 ```
 
------
+------------------------------------------------------------------------
 
 ## Code of Conduct
 
