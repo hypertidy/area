@@ -82,16 +82,16 @@ counter-clockwise 'p-&gt;q-&gt;r' turns left</p></dd>
     <h2>Details</h2>
     <p>If <code>signed = FALSE</code> the absolute value of area is returned, otherwise the
 sign reflects path orientation. Positive means counter-clockwise orientation.</p>
-    </div>
-    <div id="references">
-    <h2>References</h2>
-    <p>see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf</p>
+<p>The algorithm was once documented at 'w w w cs.tufts.edu/comp/163/OrientationTests.pdf'</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu">triangle_area</span><span class="op">(</span><span class="va">mm_tri</span><span class="op">$</span><span class="va">P</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">mm_tri</span><span class="op">$</span><span class="cn">T</span><span class="op">)</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95895</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">f</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"R/polygons.R"</span>, package <span class="op">=</span> <span class="st">"area"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in system.file("R/polygons.R", package = "area", mustWork = TRUE):</span> no file found</span>
 </code></pre></div>
     </div>
   </div>
