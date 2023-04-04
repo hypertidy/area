@@ -63,7 +63,18 @@ The <code>H</code>OLE property is not yet set WIP.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"R"</span>, package <span class="op">=</span> <span class="st">"area"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ P : num [1:14, 1:2] 0 0 0.2 0.2 0.3 0.5 0.5 0.5 0.69 0.75 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "dimnames")=List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ : chr [1:2] "x_" "y_"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ PA: num[1, 0 ] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ PB: int 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ S : int [1:16, 1:2] 1 2 10 12 8 11 9 3 6 7 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ SB: int(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ H : num[0 , 1:2] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr "pslg"</span>
 </code></pre></div>
     </div>
   </div>
