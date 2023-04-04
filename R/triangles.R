@@ -20,7 +20,6 @@
 #' @examples
 #' sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
 #'
-#' f<- system.file("R/polygons.R", package = "area", mustWork = TRUE)
 triangle_area <- function(x, signed = FALSE) {
   area <- area_triangle_cpp(x[,1L, drop = TRUE],
                     x[,2L, drop = TRUE])

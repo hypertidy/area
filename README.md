@@ -5,10 +5,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build
-status](https://github.com/hypertidy/area/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/area/actions)
 [![R-CMD-check](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -138,6 +134,9 @@ version
 library(silicate)
 #> 
 #> Attaching package: 'silicate'
+#> The following objects are masked _by_ '.GlobalEnv':
+#> 
+#>     inlandwaters, minimal_mesh
 #> The following object is masked from 'package:stats':
 #> 
 #>     filter
@@ -147,8 +146,8 @@ dim(trxy)
 #> [1] 18291     2
 rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
 #>   test replications elapsed relative user.self sys.self user.child sys.child
-#> 2  cpp          100   0.056    1.000     0.044    0.011          0         0
-#> 1    R          100   0.263    4.696     0.234    0.029          0         0
+#> 2  cpp          100   0.065    1.000     0.050    0.016          0         0
+#> 1    R          100   0.296    4.554     0.233    0.064          0         0
 sum(abs(a - b))
 #> [1] 0.0004653583
 mean(c(sum(a), sum(b)))

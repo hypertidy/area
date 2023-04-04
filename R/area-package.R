@@ -19,5 +19,5 @@ NULL
 #' @name mm
 #' @aliases tas mm_tri
 #' @examples
-#' fs <- list.files(system.file("R", package = "area", mustWork = TRUE))
+#' str(mm)
 NULL

@@ -30,5 +30,4 @@ The algorithm was once documented at 'w w w cs.tufts.edu/comp/163/OrientationTes
 \examples{
 sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
 
-f<- system.file("R/polygons.R", package = "area", mustWork = TRUE)
 }

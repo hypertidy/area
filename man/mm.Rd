@@ -15,5 +15,5 @@ holes in planar straight line graph format from the RTriangle package.
 The \code{H}OLE property is not yet set WIP.
 }
 \examples{
-fs <- list.files(system.file("R", package = "area", mustWork = TRUE))
+str(mm)
 }
