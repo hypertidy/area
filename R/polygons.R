@@ -35,7 +35,7 @@
 #' p <- m[c(1:nrow(m), 1), ]  ## close it
 #' polygon_area(p)
 #' @export
-#' @return numeric vector of area
+#' @returns numeric vector of area
 polygon_area <- function(x, signed = FALSE) {
   area <- area_cpp(x[,1L, drop = TRUE],
            x[,2L, drop = TRUE])

@@ -16,7 +16,7 @@
 #' if `TRUE` negative means clockwise 'p->q->r' turns right and positive means
 #' counter-clockwise 'p->q->r' turns left
 #' @export
-#' @return numeric vector of area
+#' @returns numeric vector of area
 #' @examples
 #' sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
 #'
