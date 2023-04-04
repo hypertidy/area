@@ -1,5 +1,6 @@
-#include <Rcpp.h>
+#include <cpp11.hpp>
+using namespace cpp11;
 
 
-Rcpp::NumericVector area_triangle_cpp(NumericVector x, NumericVector y);
-Rcpp::NumericVector area_cpp(NumericVector x, NumericVector y);
+doubles area_triangle_cpp(doubles x, doubles y);
+doubles area_cpp(doubles x, doubles y);

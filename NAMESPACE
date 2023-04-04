@@ -2,5 +2,4 @@
 
 export(polygon_area)
 export(triangle_area)
-importFrom(Rcpp,sourceCpp)
 useDynLib(area, .registration = TRUE)

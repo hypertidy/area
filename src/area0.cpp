@@ -1,5 +1,6 @@
-#include <Rcpp.h>
-using namespace Rcpp;
+#include <cpp11.hpp>
+using namespace cpp11;
+
 
 
 #include "area/area.h"
@@ -7,14 +8,14 @@ using namespace Rcpp;
 #include "area0.h"
 
 
-// [[Rcpp::export]]
-Rcpp::NumericVector area_cpp(NumericVector x, NumericVector y) {
+[[cpp11::register]]
+doubles area_cpp(doubles x, doubles y) {
   return area::area_x_y(x, y);
 
 }
 
-// [[Rcpp::export]]
-Rcpp::NumericVector area_triangle_cpp(NumericVector x, NumericVector y) {
+[[cpp11::register]]
+doubles area_triangle_cpp(doubles x, doubles y) {
   return area::area_triangle(x, y);
 
 }

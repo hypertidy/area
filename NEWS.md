@@ -1,4 +1,6 @@
-# area dev
+# area 0.1.0
+
+* Now use cpp11. 
 
 * Added C++ versions of triangle and polygon area. 
 

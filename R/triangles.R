@@ -15,6 +15,7 @@
 #' if `TRUE` negative means clockwise 'p->q->r' turns right and positive means
 #' counter-clockwise 'p->q->r' turns left
 #' @export
+#' @return numeric vector of area
 #' @references see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
 #' @examples
 #' sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
@@ -44,7 +45,4 @@ triangle_area_r <- function(x, signed = FALSE) {
   area
 }
 
-tri_area <- function(...) {
-  .Deprecated("triangle_area")
-  triangle_area(...)
-}
+

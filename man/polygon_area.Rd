@@ -11,6 +11,9 @@ polygon_area(x, signed = FALSE)
 
 \item{signed}{defaults to \code{FALSE} and absolute value of area is returned}
 }
+\value{
+numeric vector of area
+}
 \description{
 Calculate polygon area from a matrix of a closed polygon. Closed means
 that the first coordinate is the same as the last.

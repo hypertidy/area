@@ -13,6 +13,9 @@ triangle_area(x, signed = FALSE)
 if \code{TRUE} negative means clockwise 'p->q->r' turns right and positive means
 counter-clockwise 'p->q->r' turns left}
 }
+\value{
+numeric vector of area
+}
 \description{
 Calculate triangle area from a matrix of coordinates. Triangles are composed
 of three coordinates, so the matrix should have this as triplets of rows

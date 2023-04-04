@@ -33,6 +33,7 @@
 #' p <- m[c(1:nrow(m), 1), ]  ## close it
 #' polygon_area(p)
 #' @export
+#' @return numeric vector of area
 polygon_area <- function(x, signed = FALSE) {
   area <- area_cpp(x[,1L, drop = TRUE],
            x[,2L, drop = TRUE])
@@ -40,11 +41,6 @@ polygon_area <- function(x, signed = FALSE) {
     area <- abs(area)
   }
   area
-}
-
-poly_area <- function(...) {
-  .Deprecated("polygon_area")
-  polygon_area(...)
 }
 
 ## lead shift by 1

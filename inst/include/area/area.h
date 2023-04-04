@@ -1,11 +1,11 @@
 #ifndef AREA_AREA0_H
 #define AREA_AREA0_H
 
-#include <Rcpp.h>
+#include <cpp11.hpp>
+using namespace cpp11;
 
 namespace area {
 
-using namespace Rcpp;
 
 
  // polygon area, x,y coords assumed first == last
@@ -13,7 +13,7 @@ using namespace Rcpp;
  // http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
  // https://en.wikipedia.org/wiki/Shoelace_formula
  // https://rosettacode.org/wiki/Shoelace_formula_for_polygonal_area
- NumericVector area_x_y(NumericVector x, NumericVector y) {
+ doubles area_x_y(doubles x, doubles y) {
 
   int len = (int)x.size();
   double left = 0;
@@ -23,17 +23,17 @@ using namespace Rcpp;
   left  += x[i] * y[i+1];
     right += x[i+1] * y[i];
   }
-  NumericVector out = NumericVector(1);
+  writable::doubles out(1);
   out[0] = 0.5 * (left - right);
   return out;
 }
 
 // triangle area, x, y coords assumed triplets
-NumericVector area_triangle(NumericVector x, NumericVector y) {
+doubles area_triangle(doubles x, doubles y) {
   int len = (int)x.size();
   int len3 = len/3;
 
-  NumericVector out = NumericVector(len3);
+  writable::doubles out(len3);
 
    //ix = 2, 3, 1
    //jx = 1, 2, 3

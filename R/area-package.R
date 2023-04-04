@@ -5,7 +5,6 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @useDynLib area, .registration = TRUE
-#' @importFrom Rcpp sourceCpp
 ## usethis namespace: end
 NULL
 
@@ -17,10 +16,8 @@ NULL
 #' `mm_tri` is a triangulated form of `mm` in RTriangle `triangulation` format.
 #' The `H`OLE property is not yet set WIP.
 #' @docType data
+#' @name mm
 #' @aliases tas mm_tri
 #' @examples
-#' # library(RTriangle)
-#' # plot(mm)
-#' # plot(tas, pch = ".")
-#' # plot(triangulate(mm, a = .002, D = TRUE), pch = ".")
-"mm"
+#' fs <- list.files(system.file("R", package = "area", mustWork = TRUE))
+NULL

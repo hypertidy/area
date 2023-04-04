@@ -6,12 +6,6 @@
 \alias{tas}
 \alias{mm_tri}
 \title{Planar straight line graphs and triangulations}
-\format{
-An object of class \code{pslg} of length 6.
-}
-\usage{
-mm
-}
 \description{
 A minimal mesh with one hole \code{mm} and a map of Tasmania with multiple
 holes in planar straight line graph format from the RTriangle package.
@@ -21,9 +15,5 @@ holes in planar straight line graph format from the RTriangle package.
 The \code{H}OLE property is not yet set WIP.
 }
 \examples{
-# library(RTriangle)
-# plot(mm)
-# plot(tas, pch = ".")
-# plot(triangulate(mm, a = .002, D = TRUE), pch = ".")
+fs <- list.files(system.file("R", package = "area", mustWork = TRUE))
 }
-\keyword{datasets}
