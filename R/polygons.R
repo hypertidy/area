@@ -12,6 +12,8 @@
 #'
 #' If `signed = FALSE` the absolute value of area is returned, otherwise the
 #' sign reflects path orientation. Positive means counter-clockwise orientation.
+#'
+#' The algorithm used was once on the internet at "w w w .cs.tufts.edu/comp/163/OrientationTests.pdf"
 #' @param x polygon in xy matrix
 #' @param signed  defaults to `FALSE` and absolute value of area is returned
 #' @examples

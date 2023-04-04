@@ -6,7 +6,7 @@
 \alias{area-package}
 \title{area: Calculate Area of Triangles and Polygons}
 \description{
-Calculate the area of triangles and polygons using the shoelace formula. Area may be signed, taking into account path orientation, or unsigned, ignoring path orientation. The shoelace formula is described at \url{https://en.wikipedia.org/wiki/Shoelace_formula} and its cross-product basis at \url{http://www.cs.tufts.edu/comp/163/OrientationTests.pdf}.
+Calculate the area of triangles and polygons using the shoelace formula. Area may be signed, taking into account path orientation, or unsigned, ignoring path orientation. The shoelace formula is described at \url{https://en.wikipedia.org/wiki/Shoelace_formula}.
 }
 \seealso{
 Useful links:

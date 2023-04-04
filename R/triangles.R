@@ -10,15 +10,17 @@
 #' If `signed = FALSE` the absolute value of area is returned, otherwise the
 #' sign reflects path orientation. Positive means counter-clockwise orientation.
 #'
+#' The algorithm was once documented at 'w w w cs.tufts.edu/comp/163/OrientationTests.pdf'
 #' @param x coordinates x,y triplets matrix where 'nrow(x) = ntriangles*3'
 #' @param signed  defaults to `FALSE` and absolute value of area is returned,
 #' if `TRUE` negative means clockwise 'p->q->r' turns right and positive means
 #' counter-clockwise 'p->q->r' turns left
 #' @export
 #' @return numeric vector of area
-#' @references see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
 #' @examples
 #' sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
+#'
+#' f<- system.file("R/polygons.R", package = "area", mustWork = TRUE)
 triangle_area <- function(x, signed = FALSE) {
   area <- area_triangle_cpp(x[,1L, drop = TRUE],
                     x[,2L, drop = TRUE])

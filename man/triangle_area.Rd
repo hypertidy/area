@@ -24,10 +24,11 @@ one after the other.
 \details{
 If \code{signed = FALSE} the absolute value of area is returned, otherwise the
 sign reflects path orientation. Positive means counter-clockwise orientation.
+
+The algorithm was once documented at 'w w w cs.tufts.edu/comp/163/OrientationTests.pdf'
 }
 \examples{
 sum(triangle_area(mm_tri$P[t(mm_tri$T), ]))
-}
-\references{
-see http://www.cs.tufts.edu/comp/163/OrientationTests.pdf
+
+f<- system.file("R/polygons.R", package = "area", mustWork = TRUE)
 }

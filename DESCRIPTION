@@ -10,8 +10,7 @@ Authors@R:
 Description: Calculate the area of triangles and polygons using the shoelace 
  formula. Area may be signed, taking into account path orientation, or unsigned, 
  ignoring path orientation. The shoelace formula is described at 
- <https://en.wikipedia.org/wiki/Shoelace_formula> and its cross-product basis at
- <http://www.cs.tufts.edu/comp/163/OrientationTests.pdf>. 
+ <https://en.wikipedia.org/wiki/Shoelace_formula>. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -27,6 +27,8 @@ as a copy of the first aka 'closed'.
 
 If \code{signed = FALSE} the absolute value of area is returned, otherwise the
 sign reflects path orientation. Positive means counter-clockwise orientation.
+
+The algorithm used was once on the internet at "w w w .cs.tufts.edu/comp/163/OrientationTests.pdf"
 }
 \examples{
 x <- c(2, 10, 8, 11, 7, 2)
