@@ -87,7 +87,7 @@ df <- sfheaders::sf_to_df(xsf)
 #>              <dbl>      <dbl>         <dbl>         <dbl> <dbl>
 #>  1               1          1             1   2203380098.     1
 #>  2               2          1             1    103039733.     1
-#>  3               3          1             1 750145539388.     1
+#>  3               3          1             1 750145539384.     1
 #>  4               3          1             2    100909770.    -1
 #>  5               3          1             3   2203380098.    -1
 #>  6               3          1             4     45585186.    -1
@@ -95,7 +95,7 @@ df <- sfheaders::sf_to_df(xsf)
 #>  8               3          1             6    110755146.    -1
 #>  9               3          1             7     59287239.    -1
 #> 10               3          1             8     66189369.    -1
-#> # … with 179 more rows
+#> # ℹ 179 more rows
 sum(mmarea$area * mmarea$hole)
 #> [1] 1.923706e+12
 sum(sf::st_area(xsf))
@@ -146,8 +146,8 @@ dim(trxy)
 #> [1] 18291     2
 rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
 #>   test replications elapsed relative user.self sys.self user.child sys.child
-#> 2  cpp          100   0.065    1.000     0.050    0.016          0         0
-#> 1    R          100   0.296    4.554     0.233    0.064          0         0
+#> 2  cpp          100   0.049    1.000     0.040    0.008          0         0
+#> 1    R          100   0.237    4.837     0.209    0.028          0         0
 sum(abs(a - b))
 #> [1] 0.0004653583
 mean(c(sum(a), sum(b)))

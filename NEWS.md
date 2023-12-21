@@ -1,4 +1,4 @@
-# area dev
+# area 0.2.0
 
 *  Improved C++ sum method to match benchmarks (from 2023 advent of code Day 18, 
  see https://github.com/hypertidy/area/issues/4). Thanks to Tan Ho, Jonathan Carroll, and Rich FitzJohn. 

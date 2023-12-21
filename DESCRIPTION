@@ -1,6 +1,6 @@
 Package: area
 Title: Calculate Area of Triangles and Polygons
-Version: 0.1.0.9001
+Version: 0.2.0
 Authors@R: 
     person(given = "Michael",
            family = "Sumner",
