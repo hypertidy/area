@@ -90,7 +90,7 @@ df <- sfheaders::sf_to_df(xsf)
 #>              <dbl>      <dbl>         <dbl>         <dbl> <dbl>
 #>  1               1          1             1   2203380098.     1
 #>  2               2          1             1    103039733.     1
-#>  3               3          1             1 750145539388.     1
+#>  3               3          1             1 750145539384.     1
 #>  4               3          1             2    100909770.    -1
 #>  5               3          1             3   2203380098.    -1
 #>  6               3          1             4     45585186.    -1
@@ -149,8 +149,8 @@ dim(trxy)
 #> [1] 18291     2
 rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
 #>   test replications elapsed relative user.self sys.self user.child sys.child
-#> 2  cpp          100   0.055    1.000     0.043    0.012          0         0
-#> 1    R          100   0.259    4.709     0.223    0.036          0         0
+#> 2  cpp          100   0.047    1.000     0.035    0.012          0         0
+#> 1    R          100   0.215    4.574     0.202    0.012          0         0
 sum(abs(a - b))
 #> [1] 0.0004653583
 mean(c(sum(a), sum(b)))

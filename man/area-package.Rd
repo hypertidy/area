@@ -12,6 +12,7 @@ Calculate the area of triangles and polygons using the shoelace formula. Area ma
 Useful links:
 \itemize{
   \item \url{https://github.com/hypertidy/area}
+  \item \url{https://hypertidy.github.io/area/}
   \item Report bugs at \url{https://github.com/hypertidy/area/issues}
 }
 
