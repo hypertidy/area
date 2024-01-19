@@ -8,6 +8,9 @@
 [![R-CMD-check](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/area)](https://CRAN.R-project.org/package=area)
+[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/area)](http://cranlogs.r-pkg.org/badges/area)
 <!-- badges: end -->
 
 The goal of area is to calculate areas, allow control over how that
@@ -95,7 +98,7 @@ df <- sfheaders::sf_to_df(xsf)
 #>  8               3          1             6    110755146.    -1
 #>  9               3          1             7     59287239.    -1
 #> 10               3          1             8     66189369.    -1
-#> # … with 179 more rows
+#> # ℹ 179 more rows
 sum(mmarea$area * mmarea$hole)
 #> [1] 1.923706e+12
 sum(sf::st_area(xsf))
@@ -146,8 +149,8 @@ dim(trxy)
 #> [1] 18291     2
 rbenchmark::benchmark(R = {a <- tri_area(trxy)}, cpp = {b <- triangle_area(trxy)})
 #>   test replications elapsed relative user.self sys.self user.child sys.child
-#> 2  cpp          100   0.065    1.000     0.050    0.016          0         0
-#> 1    R          100   0.296    4.554     0.233    0.064          0         0
+#> 2  cpp          100   0.055    1.000     0.043    0.012          0         0
+#> 1    R          100   0.259    4.709     0.223    0.036          0         0
 sum(abs(a - b))
 #> [1] 0.0004653583
 mean(c(sum(a), sum(b)))

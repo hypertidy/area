@@ -27,6 +27,8 @@ sf::st_crs(inlandwaters) <- NA
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hypertidy/area/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![CRAN status](https://www.r-pkg.org/badges/version/area)](https://CRAN.R-project.org/package=area)
+[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/area)](http://cranlogs.r-pkg.org/badges/area)
 <!-- badges: end -->
 
 The goal of area is to calculate areas, allow control over how that happens, and illustrate how it works. 
