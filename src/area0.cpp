@@ -20,4 +20,7 @@ doubles area_triangle_cpp(doubles x, doubles y) {
 
 }
 
-
+[[cpp11::register]]
+doubles area_triangle_surface_cpp(doubles x, doubles y, doubles z) {
+  return area::area_triangle_surface(x, y, z);
+}

@@ -19,11 +19,19 @@ extern "C" SEXP _area_area_triangle_cpp(SEXP x, SEXP y) {
     return cpp11::as_sexp(area_triangle_cpp(cpp11::as_cpp<cpp11::decay_t<doubles>>(x), cpp11::as_cpp<cpp11::decay_t<doubles>>(y)));
   END_CPP11
 }
+// area0.cpp
+doubles area_triangle_surface_cpp(doubles x, doubles y, doubles z);
+extern "C" SEXP _area_area_triangle_surface_cpp(SEXP x, SEXP y, SEXP z) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(area_triangle_surface_cpp(cpp11::as_cpp<cpp11::decay_t<doubles>>(x), cpp11::as_cpp<cpp11::decay_t<doubles>>(y), cpp11::as_cpp<cpp11::decay_t<doubles>>(z)));
+  END_CPP11
+}
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_area_area_cpp",          (DL_FUNC) &_area_area_cpp,          2},
-    {"_area_area_triangle_cpp", (DL_FUNC) &_area_area_triangle_cpp, 2},
+    {"_area_area_cpp",                  (DL_FUNC) &_area_area_cpp,                  2},
+    {"_area_area_triangle_cpp",         (DL_FUNC) &_area_area_triangle_cpp,         2},
+    {"_area_area_triangle_surface_cpp", (DL_FUNC) &_area_area_triangle_surface_cpp, 3},
     {NULL, NULL, 0}
 };
 }

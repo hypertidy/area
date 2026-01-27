@@ -2,4 +2,5 @@
 
 export(polygon_area)
 export(triangle_area)
+export(triangle_surface_area)
 useDynLib(area, .registration = TRUE)

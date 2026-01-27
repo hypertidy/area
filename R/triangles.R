@@ -47,3 +47,54 @@ triangle_area_r <- function(x, signed = FALSE) {
 }
 
 
+#' Calculate surface area of triangles in 2D or 3D
+#'
+#' Compute the unsigned surface area of triangles defined by vertex coordinates.
+#' Works with both 2D (xy) and 3D (xyz) input. For 2D input, z coordinates are
+#' assumed to be zero.
+#'
+#' @param x A matrix with 2 or 3 columns (x, y) or (x, y, z). Each set of 3
+#'   consecutive rows defines one triangle.
+#'
+#' @return A numeric vector of surface areas, one per triangle.
+#'
+#' @details
+#' The area is calculated using the cross product method:
+#' `Area = 0.5 * ||(v1 - v0) x (v2 - v0)||`
+#'
+#' For 2D input, this reduces to the absolute value of the shoelace formula.
+#'
+#' @examples
+#' # 2D triangle (unit right triangle)
+#' tri_2d <- matrix(c(0, 0,
+#'                    1, 0,
+#'                    0, 1), ncol = 2, byrow = TRUE)
+#' triangle_surface_area(tri_2d)  # 0.5
+#'
+#' # 3D triangle
+#' tri_3d <- matrix(c(0, 0, 0,
+#'                    1, 0, 0,
+#'                    0, 1, 1), ncol = 3, byrow = TRUE)
+#' triangle_surface_area(tri_3d)
+#'
+#' @export
+triangle_surface_area <- function(x) {
+  if (!is.matrix(x)) {
+    x <- as.matrix(x)
+  }
+
+  nc <- ncol(x)
+  if (nc == 2) {
+    # Add z = 0 for 2D input
+    x <- cbind(x, 0)
+  } else if (nc != 3) {
+    stop("'x' must have 2 or 3 columns")
+  }
+
+  if (nrow(x) %% 3 != 0) {
+    stop("Number of rows must be a multiple of 3 (triplets of vertices)")
+  }
+
+  area_triangle_surface_cpp(x[, 1], x[, 2], x[, 3])
+}
+

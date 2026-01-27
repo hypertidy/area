@@ -62,6 +62,24 @@ triangle_area(cbind(c(0, 1, 1, 1, 0, 0),
 
 ```
 
+## 3D Triangle Areas
+
+The `triangle_surface_area()` function calculates areas for triangles in 2D or 3D space using the cross product method. For 2D input, z coordinates default to zero.
+
+```{r surface-area}
+## 2D triangle (same result as triangle_area with signed = FALSE)
+tri_2d <- matrix(c(0, 0,
+                   1, 0,
+                   0, 1), ncol = 2, byrow = TRUE)
+triangle_surface_area(tri_2d)
+
+## 3D triangle tilted in space
+tri_3d <- matrix(c(0, 0, 0,
+                   1, 0, 0,
+                   0, 1, 1), ncol = 3, byrow = TRUE)
+triangle_surface_area(tri_3d)
+```
+
 There's an inbuilt data set with a path of Tasmania's outline. 
 
 ```{r tas}
@@ -71,6 +89,7 @@ plot(tas$P[idx, ], type = "l", asp = 1)
 polygon_area(tas$P[idx, ])/1e6
 
 sf::st_area(sf::st_polygon(list(tas$P[idx, ])))/1e6
+#> 1.923706e+12 [m^2]
 ```
 
 
@@ -91,9 +110,6 @@ xsf <- silicate::inlandwaters
 df <- sfheaders::sf_to_df(xsf)
 (mmarea <- calc_area(df))
 sum(mmarea$area * mmarea$hole)
-sum(sf::st_area(xsf))
-
-
 
 
 

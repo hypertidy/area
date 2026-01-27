@@ -7,3 +7,7 @@ area_cpp <- function(x, y) {
 area_triangle_cpp <- function(x, y) {
   .Call(`_area_area_triangle_cpp`, x, y)
 }
+
+area_triangle_surface_cpp <- function(x, y, z) {
+  .Call(`_area_area_triangle_surface_cpp`, x, y, z)
+}
